@@ -7,7 +7,7 @@ export 'package:model.ninateka.pl/search/result.dart';
 
 export 'model.ninateka.pl.mapper.g.dart'
     show
-        modelninateka_plAdapter,
+        modelNinatekaPlGeneratedAdapter,
         initializeJsonMapper,
         initializeJsonMapperAsync;
 
