@@ -1,7 +1,11 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:http/http.dart' as http;
 import 'package:model.ninateka.pl/model.ninateka.pl.dart'
-    show initializeJsonMapper, ninatekaAdapter, SearchResponse;
+    show
+        initializeJsonMapper,
+        ninatekaAdapter,
+        SearchResponse,
+        SearchQueryParameters;
 import 'package:test/test.dart';
 
 void main() {
@@ -10,12 +14,19 @@ void main() {
   group('[Integration with API]', () {
     test('Test search model', () async {
       // given
-      final urlString =
-          r'''https://admin.fina.gov.pl/umbraco/api/search?page=1&limit=48&field_searchable.0=yes&searchPhrase.3=a&__NodeTypeAlias.2=asset,series''';
+      final searchEndpoint =
+          r'''https://admin.fina.gov.pl/umbraco/api/search''';
+
+      print(JsonMapper.toUri(
+          getParams: SearchQueryParameters(searchPhrase: 'a'),
+          baseUrl: searchEndpoint));
 
       // when
-      final response = await http
-          .get(Uri.parse(urlString), headers: {'x-language': 'pl-pl'});
+      final response = await http.get(
+          JsonMapper.toUri(
+              getParams: SearchQueryParameters(searchPhrase: 'a'),
+              baseUrl: searchEndpoint)!,
+          headers: {'x-language': 'pl-pl'});
       final target = JsonMapper.deserialize<SearchResponse>(response.body)!;
       print(target);
 

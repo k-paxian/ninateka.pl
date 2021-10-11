@@ -1,5 +1,8 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart'
-    show jsonSerializable, JsonMapper;
+    show jsonSerializable, JsonMapper, JsonProperty;
+
+@jsonSerializable
+enum YesNo { yes, no }
 
 @jsonSerializable
 enum AssetType { audio, video }
@@ -9,6 +12,29 @@ enum RecordCategory { document, talks, music, theater }
 
 @jsonSerializable
 enum RecordType { asset, series }
+
+@jsonSerializable
+class SearchQueryParameters {
+  @JsonProperty(defaultValue: 1)
+  num? page;
+
+  @JsonProperty(defaultValue: 45)
+  num? limit;
+
+  @JsonProperty(name: 'field_searchable.0', defaultValue: YesNo.yes)
+  YesNo? fieldSearchable;
+
+  @JsonProperty(name: 'searchPhrase.3', defaultValue: '')
+  String? searchPhrase;
+
+  @JsonProperty(
+      name: '__NodeTypeAlias.2',
+      defaultValue: RecordType.values,
+      converterParams: {'delimiter': ','})
+  List<RecordType>? types;
+
+  SearchQueryParameters({this.searchPhrase, this.page});
+}
 
 @jsonSerializable
 class SearchRecord {
