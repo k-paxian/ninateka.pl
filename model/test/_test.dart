@@ -17,10 +17,6 @@ void main() {
       final searchEndpoint =
           r'''https://admin.fina.gov.pl/umbraco/api/search''';
 
-      print(JsonMapper.toUri(
-          getParams: SearchQueryParameters(searchPhrase: 'a'),
-          baseUrl: searchEndpoint));
-
       // when
       final response = await http.get(
           JsonMapper.toUri(
@@ -28,7 +24,6 @@ void main() {
               baseUrl: searchEndpoint)!,
           headers: {'x-language': 'pl-pl'});
       final target = JsonMapper.deserialize<SearchResponse>(response.body)!;
-      print(target);
 
       // then
       expect(target, TypeMatcher<SearchResponse>());
