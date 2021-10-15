@@ -21,7 +21,7 @@ void main() {
       final response = await http.get(
           JsonMapper.toUri(
               getParams: SearchQueryParameters(searchPhrase: 'a'),
-              baseUrl: searchEndpoint)!,
+              baseUrl: searchEndpoint),
           headers: {'x-language': 'pl-pl'});
       final target = JsonMapper.deserialize<SearchResponse>(response.body)!;
 

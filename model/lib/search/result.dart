@@ -37,6 +37,15 @@ class SearchQueryParameters {
 }
 
 @jsonSerializable
+class ImageDescriptor {
+  String? title;
+  String? redirect;
+  String? url;
+  String? author;
+  String? alt;
+}
+
+@jsonSerializable
 class SearchRecord {
   String? title;
   String? subtitle;
@@ -46,6 +55,7 @@ class SearchRecord {
 
   num? duration;
 
+  ImageDescriptor? image;
   AssetType? assetType;
   RecordCategory? category;
   RecordType? type;
