@@ -62,11 +62,18 @@ class SearchRecord {
 }
 
 @jsonSerializable
-class SearchResponse {
-  List<SearchRecord>? records;
+class Paging {
   num? totalItems;
   num? pageNumber;
   num? pageCount;
+}
+
+@jsonSerializable
+class SearchResponse {
+  List<SearchRecord>? records;
+
+  @JsonProperty(flatten: true)
+  Paging? paging;
 
   @override
   String toString() => JsonMapper.serialize(this);

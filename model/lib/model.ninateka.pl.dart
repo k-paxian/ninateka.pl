@@ -1,9 +1,10 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart'
     show JsonMapperAdapter, EnumDescriptor;
-import 'package:model.ninateka.pl/search/result.dart'
+import 'package:model.ninateka.pl/search.result.dart'
     show RecordCategory, RecordType;
 
-export 'package:model.ninateka.pl/search/result.dart';
+export 'package:model.ninateka.pl/search.result.dart';
+export 'package:model.ninateka.pl/services/search.service.dart';
 
 export 'model.ninateka.pl.mapper.g.dart'
     show
@@ -16,12 +17,8 @@ final ninatekaAdapter = JsonMapperAdapter(
     url: 'package:model.ninateka.pl/model.ninateka.pl.dart',
     refUrl: 'http://ninateka.pl',
     enumValues: {
-      RecordType: EnumDescriptor(
-          values: RecordType.values,
-          mapping: <RecordType, String>{
-            RecordType.asset: 'Asset',
-            RecordType.series: 'Series'
-          }),
+      RecordType:
+          EnumDescriptor(values: RecordType.values, caseInsensitive: true),
       RecordCategory: EnumDescriptor(
           values: RecordCategory.values,
           mapping: <RecordCategory, String>{
