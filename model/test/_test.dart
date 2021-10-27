@@ -4,7 +4,10 @@ import 'package:model.ninateka.pl/model.ninateka.pl.dart'
         ninatekaAdapter,
         SearchService,
         SearchResponse,
+        ContentResponse,
         SearchQueryParameters;
+import 'package:model.ninateka.pl/services/content.service.dart';
+import 'package:model.ninateka.pl/services/products.service.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -19,10 +22,44 @@ void main() {
       SearchResponse response = await searchService
           .getSearchResults(SearchQueryParameters(searchPhrase: 'a'));
 
+      // then
+      expect(response.records != null, true);
+    });
+
+    test('Test content service', () async {
+      // given
+      final contentService = ContentService();
+      final searchService = SearchService();
+
+      // when
+      SearchResponse searchResponse = await searchService
+          .getSearchResults(SearchQueryParameters(searchPhrase: 'a'));
+      ContentResponse response =
+          await contentService.getContent(searchResponse.records!.first.url!);
+
       print(response);
 
       // then
-      expect(response.records != null, true);
+      expect(response.content != null, true);
+    });
+
+    test('Test product service', () async {
+      // given
+      final contentService = ContentService();
+      final searchService = SearchService();
+      final productService = ProductsService();
+
+      // when
+      SearchResponse searchResponse = await searchService
+          .getSearchResults(SearchQueryParameters(searchPhrase: 'a'));
+      ContentResponse response =
+          await contentService.getContent(searchResponse.records!.first.url!);
+      final videoDescriptor = await productService.getVideoDescriptor(response.content!.seasons!.first.episodes!.first.atdId!);
+
+      print(videoDescriptor);
+
+      // then
+      expect(videoDescriptor != null, true);
     });
   });
 }

@@ -17,13 +17,16 @@ abstract class AbstractHttpService {
     return {};
   }
 
-  Future<http.Response> _doGet(Uri uri) =>
-      _httpClient.get(Uri.parse('$restUri$uri'), headers: defaultHeaders);
+  Future<http.Response> _doGet(Uri uri, {Map<String, String>? headers}) =>
+      _httpClient.get(Uri.parse('$restUri$uri'),
+          headers: {...defaultHeaders, ...(headers ?? {})});
 
-  Future<http.Response> _doGetResource(Uri uri) =>
-      _doGet(Uri.parse('$resourceUri$uri'));
+  Future<http.Response> _doGetResource(Uri uri,
+          {Map<String, String>? headers}) =>
+      _doGet(Uri.parse('$resourceUri$uri'), headers: headers);
 
   @protected
-  Future<T> doGetValueObject<T>(Uri uri) => _doGetResource(uri)
-      .then((response) => JsonMapper.deserialize<T>(response.body)!);
+  Future<T> doGetValueObject<T>(Uri uri, {Map<String, String>? headers}) =>
+      _doGetResource(uri, headers: headers)
+          .then((response) => JsonMapper.deserialize<T>(response.body)!);
 }

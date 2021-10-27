@@ -4,6 +4,8 @@ import 'package:model.ninateka.pl/search.result.dart'
     show RecordCategory, RecordType;
 
 export 'package:model.ninateka.pl/search.result.dart';
+export 'package:model.ninateka.pl/content.result.dart';
+export 'package:model.ninateka.pl/product.dart';
 export 'package:model.ninateka.pl/services/search.service.dart';
 
 export 'model.ninateka.pl.mapper.g.dart'

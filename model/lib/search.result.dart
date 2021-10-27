@@ -1,11 +1,9 @@
 import 'package:dart_json_mapper/dart_json_mapper.dart'
     show jsonSerializable, JsonMapper, JsonProperty;
+import 'core.types.dart';
 
 @jsonSerializable
 enum YesNo { yes, no }
-
-@jsonSerializable
-enum AssetType { audio, video }
 
 @jsonSerializable
 enum RecordCategory { document, talks, music, theater }
