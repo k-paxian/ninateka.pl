@@ -59,7 +59,7 @@ void main() {
       print(videoDescriptor);
 
       // then
-      expect(videoDescriptor != null, true);
+      expect(videoDescriptor, true);
     });
   });
 }
