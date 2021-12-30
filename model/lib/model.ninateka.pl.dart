@@ -8,6 +8,8 @@ export 'package:model.ninateka.pl/content.result.dart';
 export 'package:model.ninateka.pl/product.dart';
 export 'package:model.ninateka.pl/core.types.dart';
 export 'package:model.ninateka.pl/services/search.service.dart';
+export 'package:model.ninateka.pl/services/products.service.dart';
+export 'package:model.ninateka.pl/services/content.service.dart';
 
 export 'model.ninateka.pl.mapper.g.dart'
     show

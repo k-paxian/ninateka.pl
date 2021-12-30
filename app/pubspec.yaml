@@ -9,6 +9,7 @@ environment:
 dependencies:
   http:
   material_floating_search_bar: ^0.3.5
+  better_player:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2

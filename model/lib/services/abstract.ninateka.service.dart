@@ -1,13 +1,16 @@
 import './abstract.http.service.dart';
 
 abstract class AbstractNinatekaService extends AbstractHttpService {
+  final _url = Uri.parse('https://admin.fina.gov.pl/umbraco/api');
+  final _headers = {'x-language': 'pl-pl'};
+
   @override
   Uri get restUri {
-    return Uri.parse('https://admin.fina.gov.pl/umbraco/api');
+    return _url;
   }
 
   @override
   Map<String, String> get defaultHeaders {
-    return {'x-language': 'pl-pl'};
+    return _headers;
   }
 }

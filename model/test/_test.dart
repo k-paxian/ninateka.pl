@@ -2,12 +2,10 @@ import 'package:model.ninateka.pl/model.ninateka.pl.dart'
     show
         initializeJsonMapper,
         ninatekaAdapter,
-        SearchService,
+        SearchService, ContentService, ProductsService,
         SearchResponse,
         ContentResponse,
         SearchQueryParameters;
-import 'package:model.ninateka.pl/services/content.service.dart';
-import 'package:model.ninateka.pl/services/products.service.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -59,7 +57,7 @@ void main() {
       print(videoDescriptor);
 
       // then
-      expect(videoDescriptor, true);
+      expect(videoDescriptor.sources != null, true);
     });
   });
 }
